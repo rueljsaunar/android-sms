@@ -88,6 +88,8 @@ class ThreadViewModel(
 
     fun deleteMessage(messageId: Long) = viewModelScope.launch { repo.deleteMessage(messageId) }
 
+    fun deleteThread() = viewModelScope.launch { if (threadId > 0) repo.deleteThread(threadId) }
+
     private fun currentAddress(): String =
         addressState.value.ifEmpty { messages.value.firstOrNull()?.address.orEmpty() }
 
