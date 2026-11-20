@@ -93,6 +93,18 @@
             android:name=".receiver.SmsDeliveredReceiver"
             android:exported="false" />
 
+        <!-- Scheduled send: exact-alarm fire + reboot re-arm. -->
+        <receiver
+            android:name=".receiver.ScheduledSendReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
