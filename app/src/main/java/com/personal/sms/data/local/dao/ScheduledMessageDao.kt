@@ -24,4 +24,7 @@ interface ScheduledMessageDao {
 
     @Query("DELETE FROM scheduled_messages WHERE id = :id")
     suspend fun delete(id: Long)
+
+    @Query("DELETE FROM scheduled_messages WHERE address = :address")
+    suspend fun deleteByAddress(address: String)
 }

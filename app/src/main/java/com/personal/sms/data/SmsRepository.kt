@@ -68,6 +68,14 @@ class SmsRepository(
         provider.deleteMessage(messageId)
     }
 
+    /**
+     * Cancel scheduled sends to an address (used to dismiss a scheduled-only thread).
+     * Any already-armed alarm fires harmlessly later: the row is gone, so no send.
+     */
+    suspend fun deleteSchedulesForAddress(address: String) = withContext(Dispatchers.IO) {
+        scheduledDao.deleteByAddress(address)
+    }
+
     suspend fun markThreadRead(threadId: Long) = withContext(Dispatchers.IO) {
         provider.markThreadRead(threadId)
     }

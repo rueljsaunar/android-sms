@@ -27,6 +27,8 @@ class ConversationsViewModel(private val repo: SmsRepository) : ViewModel() {
     fun archive(threadId: Long) = viewModelScope.launch { repo.setArchived(threadId, true) }
     fun unarchive(threadId: Long) = viewModelScope.launch { repo.setArchived(threadId, false) }
     fun delete(threadId: Long) = viewModelScope.launch { repo.deleteThread(threadId) }
+    fun deleteScheduledOnly(address: String) =
+        viewModelScope.launch { repo.deleteSchedulesForAddress(address) }
     fun markRead(threadId: Long) = viewModelScope.launch { repo.markThreadRead(threadId) }
 
     companion object {
