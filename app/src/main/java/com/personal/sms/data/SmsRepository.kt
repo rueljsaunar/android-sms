@@ -82,6 +82,11 @@ class SmsRepository(
 
     fun contactFor(address: String): Contact? = contacts.resolve(address)
 
+    /** Resolve (or create) the system thread id for an address; 0 if unavailable. */
+    suspend fun resolveThreadId(address: String): Long = withContext(Dispatchers.IO) {
+        provider.threadIdFor(address) ?: 0L
+    }
+
     suspend fun allContactPhones(): List<ContactPhone> =
         withContext(Dispatchers.IO) { contacts.allPhones() }
 

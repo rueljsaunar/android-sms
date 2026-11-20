@@ -27,6 +27,14 @@ class OtpTest {
     }
 
     @Test
+    fun ignores_keyword_as_substring_of_a_word() {
+        // "shipping" contains "pin"; "barcode" contains "code" — neither is a
+        // verification keyword, so no Copy chip.
+        assertNull(detectOtp("Your shipping number is 12345678"))
+        assertNull(detectOtp("Scan the barcode 12345678"))
+    }
+
+    @Test
     fun range_covers_the_matched_code() {
         val body = "Your code is 992213"
         val match = detectOtp(body)!!
