@@ -93,6 +93,11 @@
             android:name=".receiver.SmsDeliveredReceiver"
             android:exported="false" />
 
+        <!-- Inline direct reply from the notification shade. -->
+        <receiver
+            android:name=".receiver.DirectReplyReceiver"
+            android:exported="false" />
+
         <!-- Scheduled send: exact-alarm fire + reboot re-arm. -->
         <receiver
             android:name=".receiver.ScheduledSendReceiver"
