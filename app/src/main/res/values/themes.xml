@@ -5,8 +5,8 @@
          component library — the real UI is 100% Compose. -->
     <style name="Theme.PersonalSMS" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/window_background</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/window_background</item>
+        <item name="android:navigationBarColor">@color/window_background</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
