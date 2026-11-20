@@ -20,6 +20,14 @@
             </intent-filter>
         </activity>
 
+        <!-- Send / delivery status callbacks (targeted explicitly, not exported). -->
+        <receiver
+            android:name=".receiver.SmsSentReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".receiver.SmsDeliveredReceiver"
+            android:exported="false" />
+
     </application>
 
 </manifest>

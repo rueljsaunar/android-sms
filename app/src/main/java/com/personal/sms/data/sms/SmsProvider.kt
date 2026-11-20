@@ -100,6 +100,7 @@ class SmsProvider(private val context: Context) {
             put(Sms.READ, 0)
             put(Sms.SEEN, 0)
             put(Sms.TYPE, Sms.MESSAGE_TYPE_INBOX)
+            threadIdFor(address)?.let { put(Sms.THREAD_ID, it) }
         }
         return insert(Sms.CONTENT_URI, values)
     }
@@ -113,8 +114,16 @@ class SmsProvider(private val context: Context) {
             put(Sms.READ, 1)
             put(Sms.SEEN, 1)
             put(Sms.TYPE, Sms.MESSAGE_TYPE_OUTBOX)
+            threadIdFor(address)?.let { put(Sms.THREAD_ID, it) }
         }
         return insert(Sms.CONTENT_URI, values)
+    }
+
+    /** Resolve (or create) the system thread id for an address, OEM-safe. */
+    fun threadIdFor(address: String): Long? = try {
+        android.provider.Telephony.Threads.getOrCreateThreadId(context, address)
+    } catch (_: Exception) {
+        null
     }
 
     fun setType(messageId: Long, type: Int) {
